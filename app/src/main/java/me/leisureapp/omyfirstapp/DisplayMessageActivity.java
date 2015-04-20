@@ -1,5 +1,6 @@
 package me.leisureapp.omyfirstapp;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 public class DisplayMessageActivity extends ActionBarActivity {
@@ -15,11 +17,15 @@ public class DisplayMessageActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_message);
+//        setContentView(R.layout.activity_display_message);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
 
-//        if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
-//        }
+        TextView textView = new TextView(this);
+
+        textView.setTextSize(40);
+        textView.setText(message);
+        setContentView(textView);
     }
 
 
@@ -44,14 +50,4 @@ public class DisplayMessageActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-//    public static class PlaceholderFragment extends Fragment {
-//        public PlaceholderFragment() {}
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.fragment_display_message, container, false);
-//            return rootView;
-//        }
-//    }
 }
